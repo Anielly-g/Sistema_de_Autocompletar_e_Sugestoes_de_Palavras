@@ -32,11 +32,11 @@ A tabela de dispersão é uma estrutura que associa chaves a valores. No context
 
 A árvore de prioridades, conhecida como heap, é uma estrutura que mantém os elementos organizados conforme uma ordem de prioridade específica. Nesse caso, a prioridade é determinada pela frequência dos elementos.
 
-No final, o programa conseguirá apresentar o que foi requisitado no problema.
+No final, o programa conseguirá apresentar o que foi requisitado no problema utilizando as estruturas que foram propostas.
 
 ## Entrada
 
-A entrada consiste em um ou mais arquivos de textos que serão lidos para a contagem de palavras. Nos arquivos usados para teste contém as obras do Machado de Assis : "Dom Casmurro" e "A Semana".
+A entrada consiste em um ou mais arquivos de textos que serão lidos para a contagem de palavras. Nos arquivos usados para teste contêm as obras do Machado de Assis : "Dom Casmurro" e "A Semana".
 
 O nome deles deverão seguir o seguinte padrão "input0.data", o próximo deverá ser o "input1.data" e para os seguintes deverá somar mais 1 ao número após o input. Veja o exemplo:
 
@@ -155,6 +155,8 @@ O top k elementos tem definido k como 20. Logo, o programa informa as 20 palavra
 ### Tratamento
 
 Os textos usados apresentam certas incongruências ao serem lidos. Por exemplo, se uma palavra é seguida imediatamente por pontuação ('?' '!' ',' '.' ';' ':') sem espaço algum, o computador a interpretava como uma nova palavra. Por conseguinte, foi preciso inserir um espaço após essa palavra, garantindo que a pontuação não interferisse na leitura e contagem das palavras. Também existe um hífen que é chamado de "em dash " (—) e é representado por 3 bytes. Onde foi identificado esse caractere foi alterado por espaço. No caso do hífen simples (-), se era antes da palavra e antes dele era vazio ou uma pontuação, ele foi substituído por espaço. Mas,  se fosse depois, o código verifica se o proxímo é uma letra ou espaço, na letra não o substitui , no vazio ocorre a substituição.
+
+Então, antes de serem armazenadas no unordered_map, as palavras são todas transfromadas em minúsculas e passam pelo processo de correção citado acima.
 
 ## Saída
 
