@@ -154,9 +154,11 @@ O top k elementos tem definido k como 20. Logo, o programa informa as 20 palavra
 
 ### Tratamento
 
-Os textos usados apresentam certas incongruências ao serem lidos. Por exemplo, se uma palavra é seguida imediatamente por pontuação ('?' '!' ',' '.' ';' ':') sem espaço algum, o computador a interpretava como uma nova palavra. Por conseguinte, foi preciso inserir um espaço após essa palavra, garantindo que a pontuação não interferisse na leitura e contagem das palavras. Também existe um hífen que é chamado de "em dash " (—) e é representado por 3 bytes. Onde foi identificado esse caractere foi alterado por espaço. No caso do hífen simples (-), se era antes da palavra e antes dele era vazio ou uma pontuação, ele foi substituído por espaço. Mas,  se fosse depois, o código verifica se o proxímo é uma letra ou espaço, na letra não o substitui , no vazio ocorre a substituição.
+Os textos usados apresentam certas incongruências ao serem lidos. Por exemplo, se uma palavra é seguida imediatamente por pontuação ('?' '!' ',' '.' ';' ':') sem espaço algum, o computador a interpretava como uma nova palavra. Por conseguinte, foi preciso inserir um espaço após essa palavra, garantindo que a pontuação não interferisse na leitura e contagem das palavras. 
 
-Então, antes de serem armazenadas no unordered_map, as palavras são todas transfromadas em minúsculas e passam pelo processo de correção citado acima.
+Também existe um hífen que é chamado de "em dash " (—) e é representado por 3 bytes. Onde foi identificado esse caractere foi alterado por espaço. No caso do hífen simples (-), se era antes da palavra e antes dele era vazio ou uma pontuação, ele foi substituído por espaço. Mas,  se fosse depois, o código verifica se o proxímo é uma letra ou espaço, na letra não o substitui , no vazio ocorre a substituição.
+
+Então, antes de serem armazenadas no unordered_map, as palavras são todas transformadas em minúsculas e passam pelo processo de correção citado acima.
 
 ## Saída
 
