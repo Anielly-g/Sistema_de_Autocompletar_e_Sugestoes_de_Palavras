@@ -70,7 +70,7 @@ void buildHeap(vector<pair<string, int>>& heap) {
     }
 }
 
-vector<pair<string, int>> findTopKFrequent(vector<string>& words, size_t k) {
+vector<pair<string, int>> findTopKFrequent(vector<string>& words, size_t k , const string& palavraChave) {
     unordered_map<string, int> freqMap;
     for (string& word : words) {
         transform(word.begin(), word.end(), word.begin(), ::tolower); // Convert to lowercase
@@ -84,18 +84,20 @@ vector<pair<string, int>> findTopKFrequent(vector<string>& words, size_t k) {
         }
     }
 
-     vector<pair<string, int>> heap;
+    if (freqMap.find(palavraChave) != freqMap.end()) {
+        freqMap[palavraChave] = 1; // Substitua a frequência da palavra-chave por 1
+    }
+
+    vector<pair<string, int>> heap;
     for (const auto& entry : freqMap) {
         if (heap.size() < k) {
             heap.push_back(entry);
         } else if (entry.second > heap[0].second) {
             heap[0] = entry;
-            heapify(heap, k, 0); 
+            heapify(heap, k, 0);
         }
     }
 
     buildHeap(heap);
     return heap;
 }
-
- 

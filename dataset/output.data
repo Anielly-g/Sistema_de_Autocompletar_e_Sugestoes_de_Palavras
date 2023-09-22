@@ -1,0 +1,220 @@
+Analisando o arquivo: dataset/texto0.data
+
+Palavra-chave: capitu
+
+--------------------------------------------------------
+AVL Tree para a palavra: capitu
+capÍtulo - 148
+casa - 169
+depois - 151
+dias - 191
+ela - 188
+foi - 224
+há - 151
+josé - 160
+já - 166
+meu - 169
+mim - 162
+muito - 150
+mãe - 228
+não - 1523
+olhos - 164
+quando - 192
+ser - 169
+só - 173
+também - 189
+tudo - 189
+--------------------------------------------------------
+BINARY Tree para a palavra: capitu
+só - 173
+não - 1523
+mãe - 228
+dias - 191
+quando - 192
+casa - 169
+tudo - 189
+foi - 224
+também - 189
+já - 166
+ser - 169
+olhos - 164
+josé - 160
+meu - 169
+ela - 188
+há - 151
+depois - 151
+mim - 162
+muito - 150
+capÍtulo - 148
+--------------------------------------------------------
+HUFFMAN Tree para a palavra: capitu
+também - 189
+dias - 191
+quando - 192
+foi - 224
+mãe - 228
+capÍtulo - 148
+muito - 150
+há - 151
+depois - 151
+josé - 160
+mim - 162
+olhos - 164
+já - 166
+meu - 169
+casa - 169
+ser - 169
+só - 173
+ela - 188
+tudo - 189
+não - 1523
+
+Palavra-chave: não
+
+--------------------------------------------------------
+AVL Tree para a palavra: não
+capitu - 338
+capÍtulo - 148
+casa - 169
+depois - 151
+dias - 191
+ela - 188
+foi - 224
+há - 151
+josé - 160
+já - 166
+meu - 169
+mim - 162
+muito - 150
+mãe - 228
+olhos - 164
+quando - 192
+ser - 169
+só - 173
+também - 189
+tudo - 189
+--------------------------------------------------------
+BINARY Tree para a palavra: não
+também - 189
+olhos - 164
+mãe - 228
+quando - 192
+foi - 224
+meu - 169
+capitu - 338
+só - 173
+tudo - 189
+já - 166
+ela - 188
+mim - 162
+dias - 191
+casa - 169
+ser - 169
+há - 151
+depois - 151
+josé - 160
+muito - 150
+capÍtulo - 148
+--------------------------------------------------------
+HUFFMAN Tree para a palavra: não
+casa - 169
+meu - 169
+ser - 169
+só - 173
+ela - 188
+tudo - 189
+também - 189
+dias - 191
+quando - 192
+foi - 224
+mãe - 228
+capÍtulo - 148
+muito - 150
+há - 151
+depois - 151
+josé - 160
+mim - 162
+olhos - 164
+já - 166
+capitu - 338
+
+--------------------------------------------------------
+Analisando o arquivo: dataset/texto1.data
+
+Palavra-chave: capitu
+
+--------------------------------------------------------
+Não encontrada no texto.
+--------------------------------------------------------
+
+Palavra-chave: não
+
+--------------------------------------------------------
+AVL Tree para a palavra: não
+esta - 532
+este - 513
+foi - 642
+grande - 405
+homem - 471
+há - 1220
+já - 546
+nos - 479
+outra - 434
+outro - 474
+outros - 418
+pode - 524
+quando - 664
+sem - 635
+ser - 701
+são - 690
+só - 525
+também - 512
+todos - 454
+tudo - 561
+--------------------------------------------------------
+BINARY Tree para a palavra: não
+este - 513
+foi - 642
+quando - 664
+sem - 635
+são - 690
+há - 1220
+ser - 701
+só - 525
+nos - 479
+pode - 524
+homem - 471
+já - 546
+esta - 532
+tudo - 561
+outro - 474
+outra - 434
+também - 512
+todos - 454
+outros - 418
+grande - 405
+--------------------------------------------------------
+HUFFMAN Tree para a palavra: não
+só - 525
+esta - 532
+já - 546
+tudo - 561
+há - 1220
+sem - 635
+foi - 642
+quando - 664
+são - 690
+ser - 701
+grande - 405
+outros - 418
+outra - 434
+todos - 454
+homem - 471
+outro - 474
+nos - 479
+também - 512
+este - 513
+pode - 524
+
+--------------------------------------------------------
+Runtime: 519046 microseconds.

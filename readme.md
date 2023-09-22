@@ -1,53 +1,37 @@
-# TOP K ELEMENTOS
-## Exercício Proposto
+## Problema Proposto
 
-Um exemplo clássico de problema que pode ser solucionado utilizando-se hash e heap é o
-chamado top k itens. Neste problema, é preciso encontrar os k itens mais valiosos de uma
-coleção de dados. Logo, utiliza-se o hash para contar a frequência de todos os itens, enquanto
-o heap se aplica na manutenção de uma lista dos k itens de maior valor. Sabendo-se disso,
-elabore uma solução em C/C++ que dado uma entrada:
+Imagine que você está lidando com um conjunto de textos diversificados, e deseja encontrar as palavras mais significativas em cada um deles. No entanto, a relevância das palavras não é determinada apenas por sua frequência geral. Ela é especificamente relacionada a uma palavra-chave fornecida. A tarefa é encontrar as "top k" palavras mais frequentes em cada texto que estão diretamente relacionadas à palavra-chave.
 
+## Interpretação do Problema
 
-• Crie uma tabela de dispersão (hash) para contar a frequência de cada elemento tokenizado da coleção de dados de entrada.
+1. Leitura dos Dados: Os dados dos arquivos de texto são lidos para análise.
 
-• Crie uma árvore de prioridades (heap) de tamanho k e insira os primeiros k elementos do
-hash nela.
+2. Contagem de Palavras: Divisão do  texto em palavras, para ser possível contar quantas vezes cada palavra aparece, o que será útil para a análise estatística.
 
-1. Para cada elemento restante na hash, compare a contagem com o menor valor do
-heap.
-2. Se a contagem for maior do que o menor valor da heap, remova o menor valor, insira
-o novo elemento e refaça a estrutura.
-3. Caso contrário, ignore o elemento e vá para o próximo.
+3. Heap para Top K Elementos: Um heap (estrutura de dados de fila de prioridade) que é usado para manter os "top k" elementos de cada texto. O tamanho de "k" será 20 no algoritmo.
 
-• No final, a heap conterá os k elementos com maiores valores (frequências) da coleção
-de dados. Então, imprima-os em ordem crescente.
+4. Pesquisa por Palavra-chave: Antes de inserir palavras no heap, é feita uma pesquisa pela palavra-chave fornecida. Se a palavra-chave não for encontrada no texto, a análise para esse texto é interrompida. Se a palavra-chave for encontrada, a frequência dessa palavra é registrada e a palavra depois da sua análise tem seu valor de frequência mudado para 1, para garantir que ela não seja exibida no heap.
 
-## Interpretação do Exercício
+5. Criação das Árvores: Para cada texto onde a palavra-chave foi encontrada, três estruturas de dados são criadas:
 
-O desafio é encontrar os k elementos mais importantes ou frequentes em um grupo de dados que será fornecido por um arquivo "input.data". Imagine que você tenha muitas informações e queira identificar aquelas que aparecem com mais frequência. Para isso é necessário um processo eficiente que permita identificar esses elementos de maneira rápida e econômica. 
+      • Árvore AVL: Uma árvore de busca binária balanceada onde as palavras são inseridas de acordo com sua frequência.
 
-Então, a abordagem proposta utiliza duas estruturas de dados cruciais: uma tabela de dispersão (hash) e uma árvore de prioridades (heap).
+      • Árvore de Huffman: Uma árvore de Huffman é construída usando as frequências das palavras.
 
-A tabela de dispersão é uma estrutura que associa chaves a valores. No contexto desse problema, cada elemento da coleção de dados é mapeado para a tabela hash, onde a chave é o elemento em si e o valor é a contagem de quantas vezes esse elemento aparece na coleção. Isso permite a rápida consulta e atualização das frequências dos elementos.
+      • Árvore Binária: Uma árvore binária onde as palavras são inseridas de acordo com sua frequência.
 
-A árvore de prioridades, conhecida como heap, é uma estrutura que mantém os elementos organizados conforme uma ordem de prioridade específica. Nesse caso, a prioridade é determinada pela frequência dos elementos.
-
-No final, o programa conseguirá apresentar o que foi requisitado no problema utilizando as estruturas que foram propostas.
+6. Impressão das Árvores: As três estruturas de dados (Árvore AVL, Árvore de Huffman e Árvore Binária) são impressas para cada texto para cada palavra-chave que foi encontrada.
 
 ## Entrada
+As entradas do programa são essenciais para o correto funcionamento do processo de identificação e análise das palavras mais frequentes nos textos fornecidos. Para organizar as entradas de maneira consistente, o programa segue um padrão de nomenclatura de arquivos.
 
-A entrada consiste em um ou mais arquivos de textos que serão lidos para a contagem de palavras. Nos arquivos usados para teste contêm as obras do Machado de Assis : "Dom Casmurro" e "A Semana".
+Primeiramente, os textos que serão processados são armazenados em arquivos com nomes que seguem o formato "textoN.data", onde "N" é um número inteiro que começa em 0 e é incrementado para cada novo arquivo. Esses arquivos contêm os textos completos que serão analisados em busca das palavras mais frequentes.
 
-O nome deles deverão seguir o seguinte padrão "input0.data", o próximo deverá ser o "input1.data" e para os seguintes deverá somar mais 1 ao número após o input. Veja o exemplo:
+Além disso, o programa utiliza um arquivo denominado "stopwords.data". Esse arquivo é crucial para o processo de análise, pois contém uma lista de palavras conhecidas como "stop words" ou palavras vazias. Essas palavras são comuns na língua, como artigos, preposições e pronomes, mas geralmente não são relevantes para a análise de frequência de palavras. Portanto, o programa as ignora  ao identificar as mais frequentes nos textos, garantindo que o foco esteja nas palavras lexicais significativas.
 
-![imagem dos arquivos input](img/img1.jpeg)
-
-Também há um arquivo que deverá ser fornecido chamado de "stopwords.data". Nesse arquivo será fornecido as palavras que deverão ser dispensadas por serem comuns, como os artigos,  para que as palavras lexicais sejam exibidas na lista das mais frequentes.
-
-![imagem das stopwords](img/img2.jpeg)
+Outro arquivo importante é o "input.data". Esse arquivo fornece ao programa um conjunto de palavras-chave específicas nas quais o programa baseará sua análise para identificar as palavras mais frequentes. Essas palavras-chave são essenciais para a análise direcionada, pois permitem que o programa encontre as palavras mais relevantes em relação às palavras-chave fornecidas.
 
 ## Implementação
-
 Na implementação é usada a linguagem C++ por haver muitas vantagens na manipulação de arquivos. O primeiro passo da implementação é a abertura dos arquivos para que possa ler as palavras que serão ignoradas e as que irão para a tabela de dipersão para posteriormente fazerem parte da árvore de prioridades.
 
 ### Hash
@@ -113,62 +97,43 @@ size_t _Hash_bytes(const void* ptr, size_t len, size_t seed)
 ```
 Abaixo temos um exemplo de inserção em uma hash.
 
-![Gif da inserção da hash](img/hash.gif)
 
-### Heapify e Heap
+### Heap (Min Heap):
+O heap é uma estrutura fundamental para este problema. As principais funções relacionadas ao heap são:
 
-No programa foi utilizado um min-heap, ou heap mínimo, que é uma estrutura de dados que se assemelha a uma árvore binária especial, utilizada principalmente para organizar elementos com base em seus valores. No contexto de um min-heap, cada nó da árvore possui um valor menor ou igual aos valores de seus nós filhos. Essa propriedade fundamental do min-heap torna possível que o elemento com o valor mínimo esteja sempre localizado no topo da árvore, ou seja, no nó raiz.
+insert: Esta função insere uma palavra no heap. Quando uma nova palavra é lida dos textos de entrada, ela é inserida no heap, mantendo a ordem de prioridade. Se o tamanho do heap exceder k, a palavra com a menor frequência é removida.
 
-E há algumas funções para que ele ocorra corretamente e cumpra o desejado para a solução do problema. Elas são:
+buildHeap: A função buildHeap é usada para construir o heap a partir do zero. Inicialmente, o heap está vazio, e à medida que as palavras são lidas, elas são inseridas no heap. Esta função garante que o heap contenha apenas as k palavras mais frequentes.
 
-1. Função heapify:
-    A função heapify é responsável por ajustar um nó específico na árvore heap de forma a manter a propriedade do heap, que é que o valor de cada nó seja menor ou igual ao valor dos seus filhos. A função recebe três parâmetros: o vetor heap, o tamanho atual do heap size e o índice do nó que precisa ser ajustado index.
-        
-    •  Primeiro, são calculados os índices dos filhos esquerdo e direito do nó em questão.
-    
-    •  Em seguida, são verificadas as condições para garantir que o nó atual tenha o valor menor entre o próprio nó e seus filhos. Se isso não acontecer, ocorre uma troca de valores entre o nó atual e o menor filho.
-    
-    •Se ocorrer uma troca, a função é chamada recursivamente no índice do menor filho, de forma a verificar se a troca afetou os descendentes.
+### Árvore Binária:
+A Árvore Binária armazena as palavras e suas frequências. As funções associadas à Árvore Binária são:
 
-2. Função buildHeap:
-    A função buildHeap é usada para construir um heap válido a partir do vetor fornecido. Ela percorre o vetor de trás para frente, começando pela primeira posição que possui filhos (geralmente o último nível não-folha da árvore), e aplica a função heapify para cada nó, garantindo que a propriedade de heap seja mantida.
+insert: Cada palavra presente no heap é inserida na Árvore Binária. A inserção é feita de forma que as palavras menores são colocadas à esquerda e as maiores à direita. A Árvore Binária é construída com base nas palavras do heap.
 
-3. Função findTopKFrequent:
-    Esta é a função principal que encontra as palavras mais frequentes. Ela começa criando um mapa de frequência freqMap que mapeia palavras para suas contagens.
-        
-    • Em seguida, o código itera por todas as entradas do freqMap, adicionando cada entrada ao heap. Se o tamanho do heap ainda não atingiu k, a entrada é simplesmente adicionada.
-        
-    • Caso contrário, se a contagem da entrada atual for maior do que a contagem da entrada no topo do heap (que é a entrada com a menor contagem entre as k maiores), a entrada do topo é substituída pela nova entrada e então a função heapify é chamada para ajustar a posição do novo topo, mantendo a propriedade do heap.
+search: A função search é usada para procurar uma palavra específica na Árvore Binária. Isso é útil para verificar se uma palavra pesquisada posteriormente já foi inserida na Árvore Binária.
 
-    • Após inserir todas as entradas no heap, a função buildHeap é chamada para garantir que o heap esteja corretamente organizado.
-    
-    • Por fim, o vetor heap é retornado como o resultado contendo as k palavras mais frequentes.
+### Árvore de Huffman:
+A Árvore de Huffman é usada para criar uma codificação eficiente para as palavras com base em suas frequências. As principais funções relacionadas à Árvore de Huffman são:
 
-Aqui está um exemplo visual de como a inserção no Heap funciona.
+buildHuffmanTree: Esta função é responsável por construir a Árvore de Huffman. Ela começa com os nós folha representando as palavras e suas frequências, que são inicialmente inseridos no heap. Em seguida, combina repetidamente os dois nós do heap com as frequências mais baixas até que apenas um nó permaneça, que se torna a raiz da Árvore de Huffman.
 
-![Gif do Heap](img/heap.gif)
+generateCodes: Após a construção da Árvore de Huffman, a função generateCodes é usada para gerar códigos de Huffman para cada palavra. Esses códigos são usados posteriormente para codificar as palavras nos textos.
 
-## Informações Adicionais
+### Árvore AVL:
+A Árvore AVL é uma árvore de busca balanceada que armazena as palavras e suas frequências. As principais funções relacionadas à Árvore AVL são:
 
-O top k elementos tem definido k como 20. Logo, o programa informa as 20 palavras mais utilizadas das entradas disponibilizadas descartando as stopwords.Além de fazer o tratamento de algumas palavras.
+insert: Assim como na Árvore Binária, cada palavra presente no heap é inserida na Árvore AVL. No entanto, a Árvore AVL é automaticamente reequilibrada após cada inserção para garantir que sua altura permaneça limitada. Isso é importante para manter a eficiência das operações de busca na árvore.
 
-### Tratamento
-
-Os textos usados apresentam certas incongruências ao serem lidos. Por exemplo, se uma palavra é seguida imediatamente por pontuação ('?' '!' ',' '.' ';' ':') sem espaço algum, o computador a interpretava como uma nova palavra. Por conseguinte, foi preciso inserir um espaço após essa palavra, garantindo que a pontuação não interferisse na leitura e contagem das palavras. 
-
-Também existe um hífen que é chamado de "em dash " (—) e é representado por 3 bytes. Onde foi identificado esse caractere foi alterado por espaço. No caso do hífen simples (-), se era antes da palavra e antes dele era vazio ou uma pontuação, ele foi substituído por espaço. Mas,  se fosse depois, o código verifica se o proxímo é uma letra ou espaço, na letra não o substitui , no vazio ocorre a substituição.
-
-Então, antes de serem armazenadas no unordered_map, as palavras são todas transformadas em minúsculas e passam pelo processo de correção citado acima.
+search: Similar à Árvore Binária, a função search é usada para procurar uma palavra específica na Árvore AVL. A pesquisa é realizada em uma árvore balanceada, o que garante uma busca eficiente.
 
 ## Saída
+A saída do programa resultará na apresentação das três estruturas de dados: Árvore AVL, Árvore Binária e Árvore de Huffman  construídas a partir das palavras mais frequentes presentes nos textos de entrada, conforme especificado pelo valor de "k" que é 20.
 
-Testando com as entradas [input0.data](dataset/input0.data) e [input1.data](dataset/input1.data), utilizando o arquivo de stopwords: [stopwords.data](dataset/stopwords.data), o resultado obtido foi:
-
-![imagem da saída](img/saida.jpeg)
 
 ## Conclusão
 
-Portanto, a combinação estratégica do *unordered_map* para rastrear frequências e do *min-heap* para manter as palavras mais frequentes forma uma abordagem robusta. A rapidez do acesso ao unordered_map é essencial para coletar dados precisos sobre a frequência das palavras. Enquanto isso, o min-heap garante que o foco permaneça nas palavras mais relevantes, ajustando-se automaticamente à medida que novos dados chegam. Esta sinergia eficiente torna possível encontrar as 20 palavras mais frequentes de maneira otimizada, ideal para lidar com grandes volumes de informações de forma direcionada e precisa.
+A solução proposta oferece uma abordagem robusta e eficiente para a identificação das palavras mais relevantes em textos relacionados a uma palavra-chave específica. A combinação de estruturas de dados como Árvores AVL, Árvores de Huffman e Árvores Binárias permite uma análise aprofundada da frequência e relevância das palavras em diferentes contextos. Essa abordagem é ideal para lidar com grandes volumes de informações de forma direcionada e precisa, tornando-a uma ferramenta valiosa na análise de texto e na extração de informações relevantes.
+
 
 ## Compilação e Execução
 
@@ -184,9 +149,3 @@ O Top K Elements disponibilizado possui um arquivo Makefile que realiza todo o p
 É recomendado executar um `make clean` antes do `make` .
 
 ## Referências
-
-- STAPLES, A. B. e G. What is the default hash function used in C++ std::unordered_map? Disponível em: https://stackoverflow.com/questions/19411742/what-is-the-default-hash-function-used-in-c-stdunordered-map.
-
-- KUMAR hitesh. A bit about Heap. Disponível em: https://smellycode.com/binary-heap/.
-
-- KHIM, K. T. e J. Hash Tables. Disponível em: https://brilliant.org/wiki/hash-tables/.
