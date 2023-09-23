@@ -33,4 +33,4 @@ HuffmanNode* buildHuffmanTree(const vector<pair<string, int>>& topKFrequent);
 // Função para imprimir a árvore de Huffman em pré-ordem
 void printHuffmanTreeStructure(HuffmanNode* root, ofstream& outputFile);
 
-#endif // HUFFMAN_TREE_HPP
+#endif 

@@ -1,3 +1,4 @@
+# Sistema de Autocompletar e Sugestões de Palavras
 ## Problema Proposto
 
 Imagine que você está lidando com um conjunto de textos diversificados, e deseja encontrar as palavras mais significativas em cada um deles. No entanto, a relevância das palavras não é determinada apenas por sua frequência geral. Ela é especificamente relacionada a uma palavra-chave fornecida. A tarefa é encontrar as "top k" palavras mais frequentes em cada texto que estão diretamente relacionadas à palavra-chave.
@@ -23,13 +24,20 @@ Imagine que você está lidando com um conjunto de textos diversificados, e dese
 6. Impressão das Árvores: As três estruturas de dados (Árvore AVL, Árvore de Huffman e Árvore Binária) são impressas para cada texto para cada palavra-chave que foi encontrada.
 
 ## Entrada
-As entradas do programa são essenciais para o correto funcionamento do processo de identificação e análise das palavras mais frequentes nos textos fornecidos. Para organizar as entradas de maneira consistente, o programa segue um padrão de nomenclatura de arquivos.
+As entradas do programa são essenciais para o correto funcionamento do processo de identificação e análise das palavras mais frequentes nos textos fornecidos. Para organizar as entradas de maneira consistente, o programa segue um padrão de nomenclatura de arquivos e estes estão localizados dentro da pasta chamada dataset.
+
+<img src="img/img1.png" alt="pasta dataset" title="exemplo da pasta dataset">
+
 
 Primeiramente, os textos que serão processados são armazenados em arquivos com nomes que seguem o formato "textoN.data", onde "N" é um número inteiro que começa em 0 e é incrementado para cada novo arquivo. Esses arquivos contêm os textos completos que serão analisados em busca das palavras mais frequentes.
 
 Além disso, o programa utiliza um arquivo denominado "stopwords.data". Esse arquivo é crucial para o processo de análise, pois contém uma lista de palavras conhecidas como "stop words" ou palavras vazias. Essas palavras são comuns na língua, como artigos, preposições e pronomes, mas geralmente não são relevantes para a análise de frequência de palavras. Portanto, o programa as ignora  ao identificar as mais frequentes nos textos, garantindo que o foco esteja nas palavras lexicais significativas.
 
+<img src="img/img2.png" alt="stop words no dataset" title="exemplo de stopwords">
+
 Outro arquivo importante é o "input.data". Esse arquivo fornece ao programa um conjunto de palavras-chave específicas nas quais o programa baseará sua análise para identificar as palavras mais frequentes. Essas palavras-chave são essenciais para a análise direcionada, pois permitem que o programa encontre as palavras mais relevantes em relação às palavras-chave fornecidas.
+
+<img src="img/img3.png" alt="arquivo input com as palavras chave" title="exemplo do arquivo input">
 
 ## Implementação
 Na implementação é usada a linguagem C++ por haver muitas vantagens na manipulação de arquivos. O primeiro passo da implementação é a abertura dos arquivos para que possa ler as palavras que serão ignoradas e as que irão para a tabela de dipersão para posteriormente fazerem parte da árvore de prioridades.
@@ -97,6 +105,8 @@ size_t _Hash_bytes(const void* ptr, size_t len, size_t seed)
 ```
 Abaixo temos um exemplo de inserção em uma hash.
 
+<img src="img/hash.gif" alt="hash" title="exemplo de hash">
+
 
 ### Heap (Min Heap):
 O heap é uma estrutura fundamental para este problema. As principais funções relacionadas ao heap são:
@@ -105,12 +115,16 @@ insert: Esta função insere uma palavra no heap. Quando uma nova palavra é lid
 
 buildHeap: A função buildHeap é usada para construir o heap a partir do zero. Inicialmente, o heap está vazio, e à medida que as palavras são lidas, elas são inseridas no heap. Esta função garante que o heap contenha apenas as k palavras mais frequentes.
 
+<img src="img/heap.gif" alt="heap gif" title="exemplo de heap">
+
 ### Árvore Binária:
 A Árvore Binária armazena as palavras e suas frequências. As funções associadas à Árvore Binária são:
 
 insert: Cada palavra presente no heap é inserida na Árvore Binária. A inserção é feita de forma que as palavras menores são colocadas à esquerda e as maiores à direita. A Árvore Binária é construída com base nas palavras do heap.
 
 search: A função search é usada para procurar uma palavra específica na Árvore Binária. Isso é útil para verificar se uma palavra pesquisada posteriormente já foi inserida na Árvore Binária.
+
+<img src="img/binarytree.gif" alt="árvore binária" title="exemplo de inserção árvore binária">
 
 ### Árvore de Huffman:
 A Árvore de Huffman é usada para criar uma codificação eficiente para as palavras com base em suas frequências. As principais funções relacionadas à Árvore de Huffman são:
@@ -119,6 +133,8 @@ buildHuffmanTree: Esta função é responsável por construir a Árvore de Huffm
 
 generateCodes: Após a construção da Árvore de Huffman, a função generateCodes é usada para gerar códigos de Huffman para cada palavra. Esses códigos são usados posteriormente para codificar as palavras nos textos.
 
+<img src="img/huffmantree.gif" alt="exemplo árvore de huffman " title="exemplo da árvore de huffman">
+
 ### Árvore AVL:
 A Árvore AVL é uma árvore de busca balanceada que armazena as palavras e suas frequências. As principais funções relacionadas à Árvore AVL são:
 
@@ -126,9 +142,22 @@ insert: Assim como na Árvore Binária, cada palavra presente no heap é inserid
 
 search: Similar à Árvore Binária, a função search é usada para procurar uma palavra específica na Árvore AVL. A pesquisa é realizada em uma árvore balanceada, o que garante uma busca eficiente.
 
+<img src="img/AVLTree.gif" alt="exemplo árvore AVL" title="exemplo árvore AVL">
+
 ## Saída
 A saída do programa resultará na apresentação das três estruturas de dados: Árvore AVL, Árvore Binária e Árvore de Huffman  construídas a partir das palavras mais frequentes presentes nos textos de entrada, conforme especificado pelo valor de "k" que é 20.
 
+Na próxima imagem veremos a saída do output.data, primeiro há qual arquivo de texto está sendo analiso e depois a palavra.
+
+<img src="img/img4.png" alt="saida sem resultado" title="exemplo de saída">
+
+Nesse imagem acima, a palavra buscada foi "capitu" no texto1.data e essa palavra não foi encontrada no texto. Logo, não houve impressão das árvores.
+
+Nessa próxima imagem veremos a busca da palavra-chave "não" e as árvores impressas, visto que ela existe no texto.
+
+<img src="img/img5.png" alt="saída válida" title="exemplo de saída">
+
+E no final do arquivo de saída também mostra o tempo de execução. Quanto maior o número de palavras no input, maior será o tempo de execução.
 
 ## Conclusão
 
@@ -137,7 +166,7 @@ A solução proposta oferece uma abordagem robusta e eficiente para a identifica
 
 ## Compilação e Execução
 
-O Top K Elements disponibilizado possui um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
+O Sistema de Autocompletar e Sugestões de Palavras disponibilizado possui um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
 
 
 | Comando                |Função                                                                                           |                     
@@ -149,3 +178,16 @@ O Top K Elements disponibilizado possui um arquivo Makefile que realiza todo o p
 É recomendado executar um `make clean` antes do `make` .
 
 ## Referências
+
+- STAPLES, A. B. e G. What is the default hash function used in C++ std::unordered_map? Disponível em: https://stackoverflow.com/questions/19411742/what-is-the-default-hash-function-used-in-c-stdunordered-map.
+
+- KUMAR hitesh. A bit about Heap. Disponível em: https://smellycode.com/binary-heap/.
+
+- KHIM, K. T. e J. Hash Tables. Disponível em: https://brilliant.org/wiki/hash-tables/.
+
+- HUFFMAN huff demo.gif. Disponível em: https://en.wikipedia.org/wiki/File:Huffman_huff_demo.gif.
+
+- AVL TREE Example.gif. Disponível em: https://en.m.wikipedia.org/wiki/File:AVL_Tree_Example.gif.
+
+- BINARY Trees (Part 2) - Binary-Search Trees are the BeST. Disponível em: https: //dev.to/jenshaw/binary-search-trees-are-the-best-gkk.
+

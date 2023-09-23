@@ -8,9 +8,6 @@
 #include <unordered_map>
 #include <fstream>
 
-#include <set> // Incluímos a biblioteca para a árvore AVL
-#include <sstream> 
-
 using namespace std;
 
 string cleanWord(string word);
